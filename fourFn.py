@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # fourFn.py
 #
 # Demonstration of the pyparsing module, implementing a simple 4-function expression parser,
