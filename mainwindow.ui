@@ -194,6 +194,21 @@
    </property>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>var_fx</tabstop>
+  <tabstop>var_a</tabstop>
+  <tabstop>var_e</tabstop>
+  <tabstop>var_b</tabstop>
+  <tabstop>var_l</tabstop>
+  <tabstop>check_max</tabstop>
+  <tabstop>check_min</tabstop>
+  <tabstop>check_dihotomic</tabstop>
+  <tabstop>check_golden_ratio</tabstop>
+  <tabstop>check_fibo</tabstop>
+  <tabstop>main_output</tabstop>
+  <tabstop>evaluate</tabstop>
+  <tabstop>clear</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
  <buttongroups>
