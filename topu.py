@@ -72,8 +72,9 @@ def dihotomic_search(function, A, B, mode, eps, length):
             B = nB
         step += 1
     
-    # Result       
-    result = 'Оптимальное значение аргумента: {0:.8g}\nОптимальное значение функции: {1:.8g}\nКол-во вычислений: {2}'.format((A+B)/2, (f(A)+f(B))/2, step)
+    # Result  
+    optimal = (A+B)/2
+    result = 'Оптимальное значение аргумента: {0:.8g}\nОптимальное значение функции: {1:.8g}\nКол-во вычислений: {2}'.format(optimal, f(optimal), step)
     
     return (table, result)
 
@@ -104,7 +105,8 @@ def golden_ratio_search(function, A, B, mode, eps, length):
         step += 1
     
     # Result
-    result = 'Оптимальное значение аргумента: {0:.8g}\nОптимальное значение функции: {1:.8g}\nКол-во вычислений: {2}'.format((nA+nB)/2, (fnA+fnB)/2, step)
+    optimal = (nA+nB)/2
+    result = 'Оптимальное значение аргумента: {0:.8g}\nОптимальное значение функции: {1:.8g}\nКол-во вычислений: {2}'.format(optimal, f(optimal), step)
     
     return (table, result)
 
@@ -147,7 +149,8 @@ def fibonachi_search(function, A, B, mode, eps, length):
     table.append(['%.8g' % i for i in [step, A, B, nA, nB, fnA, fnB]]) 
     
     # Result
-    result = 'Оптимальное значение аргумента: {0:.8g}\nОптимальное значение функции: {1:.8g}\nКол-во вычислений: {2}'.format((A+B)/2, (f(A)+f(B))/2, step)
+    optimal = (A+B)/2
+    result = 'Оптимальное значение аргумента: {0:.8g}\nОптимальное значение функции: {1:.8g}\nКол-во вычислений: {2}'.format(optimal, f(optimal), step)
     
     return (table, result)
 
