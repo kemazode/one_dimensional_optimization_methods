@@ -1,5 +1,6 @@
 #include <python3.7m/Python.h>
 #include <cstdlib>
+#include <QValidator>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -30,6 +31,14 @@ MainWindow::MainWindow(QWidget *parent)
     ui->methods->setId(ui->check_dihotomic, 0);
     ui->methods->setId(ui->check_golden_ratio, 1);
     ui->methods->setId(ui->check_fibo, 2);
+
+    auto validator = new QDoubleValidator();
+    validator->setNotation(QDoubleValidator::Notation::ScientificNotation);
+    validator->setLocale(QLocale(QLocale::English));
+    ui->a->setValidator(validator);
+    ui->b->setValidator(validator);
+    ui->len->setValidator(validator);
+    ui->eps->setValidator(validator);
 }
 
 MainWindow::~MainWindow()
@@ -39,38 +48,18 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_evaluate_clicked()
 {
-    bool correctness = true;
-    double beg = ui->a->text().toDouble(&correctness);
-    if (!correctness) {
-        print_error("Error: A has an invalid value.");
-        return;
-    }
+    double beg = ui->a->text().toDouble();
+    double end = ui->b->text().toDouble();
+    double eps = ui->eps->text().toDouble();
+    double len = ui->len->text().toDouble();
 
-    double end = ui->b->text().toDouble(&correctness);
-    if (!correctness) {
-        print_error("Error: B has an invalid value.");
+    if (2*eps >= len) {
+        print_error("Error: Double epsilon must be less than L");
         return;
     }
 
     if (beg > end) {
-        print_error("Error: A must be less than B.");
-        return;
-    }
-
-    double eps = ui->eps->text().toDouble(&correctness);
-    if (!correctness) {
-        print_error("Error: Epsilon is invalid.");
-        return;
-    }
-
-    double len = ui->len->text().toDouble(&correctness);
-    if (!correctness) {
-        print_error("Error: L has an invalid value.");
-        return;
-    }
-
-    if (2*eps >= len) {
-        print_error("Error: Double epsilon must be less than L.");
+        print_error("Error: A must be less than B");
         return;
     }
 
@@ -94,13 +83,13 @@ void MainWindow::on_evaluate_clicked()
     {
         py_method = PyObject_GetAttrString(py_module, METHODS[method]);
         if (!py_method or !PyCallable_Check(py_method)) {
-            print_error(QString("Error: Python object \"") + METHODS[method] + "\" is not exists or is not callable.");
+            print_error(QString("Error: Python object \"") + METHODS[method] + "\" is not exists or is not callable");
             goto error;
         }
 
         py_get_table = PyObject_GetAttrString(py_module, GET_TABLE_NAME);
         if (!py_get_table or !PyCallable_Check(py_get_table)) {
-            print_error("Error: Python object \"" + QString(GET_TABLE_NAME) + "\" is not exists or is not callable.");
+            print_error("Error: Python object \"" + QString(GET_TABLE_NAME) + "\" is not exists or is not callable");
             goto error;
         }
 
@@ -115,7 +104,7 @@ void MainWindow::on_evaluate_clicked()
 
         py_list = PyObject_CallObject(py_method, py_args);
         if (!py_list) {
-            print_error("Error: Invalid function.");
+            print_error("Error: Invalid function \"" + ui->f->text() + "\"");
             goto error;
         }
 
@@ -124,7 +113,7 @@ void MainWindow::on_evaluate_clicked()
         ui->output->append(PyUnicode_AsUTF8(py_table));
 
     } else {
-        print_error("Error: Python module is not exists.");
+        print_error("Error: Python module is not exists");
         goto error;
     }
 
