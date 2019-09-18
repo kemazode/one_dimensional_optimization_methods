@@ -41,14 +41,8 @@
       <property name="spacing">
        <number>6</number>
       </property>
-      <item row="4" column="5">
-       <widget class="QLineEdit" name="b"/>
-      </item>
-      <item row="0" column="3" colspan="3">
-       <widget class="QLineEdit" name="f"/>
-      </item>
-      <item row="7" column="1">
-       <widget class="QLabel" name="label_4">
+      <item row="7" column="4">
+       <widget class="QLabel" name="label_5">
         <property name="font">
          <font>
           <family>Ubuntu Mono</family>
@@ -56,12 +50,31 @@
          </font>
         </property>
         <property name="text">
-         <string>   ε =</string>
+         <string> L = </string>
         </property>
        </widget>
       </item>
-      <item row="7" column="3">
-       <widget class="QLineEdit" name="eps"/>
+      <item row="0" column="3" colspan="3">
+       <widget class="QLineEdit" name="f"/>
+      </item>
+      <item row="7" column="5">
+       <widget class="QLineEdit" name="len"/>
+      </item>
+      <item row="4" column="3">
+       <widget class="QLineEdit" name="a">
+        <property name="text">
+         <string/>
+        </property>
+        <property name="maxLength">
+         <number>32767</number>
+        </property>
+        <property name="frame">
+         <bool>true</bool>
+        </property>
+        <property name="placeholderText">
+         <string/>
+        </property>
+       </widget>
       </item>
       <item row="10" column="5">
        <widget class="QRadioButton" name="check_golden_ratio">
@@ -73,52 +86,38 @@
         </attribute>
        </widget>
       </item>
-      <item row="4" column="3">
-       <widget class="QLineEdit" name="a"/>
+      <item row="4" column="5">
+       <widget class="QLineEdit" name="b"/>
       </item>
       <item row="13" column="1" colspan="4">
-       <layout class="QHBoxLayout" name="horizontalLayout">
-        <item>
+       <layout class="QFormLayout" name="formLayout">
+        <item row="0" column="0">
          <widget class="QPushButton" name="evaluate">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="text">
            <string>Evaluate</string>
           </property>
          </widget>
         </item>
-        <item>
+        <item row="0" column="1">
          <widget class="QPushButton" name="clear">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="text">
            <string>Clear</string>
           </property>
          </widget>
         </item>
        </layout>
-      </item>
-      <item row="4" column="1">
-       <widget class="QLabel" name="label_2">
-        <property name="font">
-         <font>
-          <family>Ubuntu Mono</family>
-          <pointsize>14</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>   A =</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="4">
-       <widget class="QLabel" name="label_3">
-        <property name="font">
-         <font>
-          <family>Ubuntu Mono</family>
-          <pointsize>14</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string> B = </string>
-        </property>
-       </widget>
       </item>
       <item row="10" column="3">
        <widget class="QRadioButton" name="check_min">
@@ -140,8 +139,8 @@
         </attribute>
        </widget>
       </item>
-      <item row="7" column="4">
-       <widget class="QLabel" name="label_5">
+      <item row="4" column="4">
+       <widget class="QLabel" name="label_3">
         <property name="font">
          <font>
           <family>Ubuntu Mono</family>
@@ -149,7 +148,7 @@
          </font>
         </property>
         <property name="text">
-         <string> L = </string>
+         <string> B = </string>
         </property>
        </widget>
       </item>
@@ -163,6 +162,19 @@
         </property>
         <property name="text">
          <string>f(x) =</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QLabel" name="label_2">
+        <property name="font">
+         <font>
+          <family>Ubuntu Mono</family>
+          <pointsize>14</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>   A =</string>
         </property>
        </widget>
       </item>
@@ -198,16 +210,32 @@
         </attribute>
        </widget>
       </item>
-      <item row="7" column="5">
-       <widget class="QLineEdit" name="len"/>
+      <item row="7" column="1">
+       <widget class="QLabel" name="label_4">
+        <property name="font">
+         <font>
+          <family>Ubuntu Mono</family>
+          <pointsize>14</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>   ε =</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="3">
+       <widget class="QLineEdit" name="eps"/>
       </item>
       <item row="12" column="1" colspan="5">
-       <widget class="QTextBrowser" name="output">
+       <widget class="QTextEdit" name="output">
         <property name="font">
          <font>
           <family>Ubuntu Mono</family>
           <pointsize>12</pointsize>
          </font>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
