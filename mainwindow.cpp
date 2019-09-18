@@ -4,7 +4,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-constexpr const char* MODULE_NAME = "opt-methods";
+constexpr const char* MODULE_NAME = "optmethods";
 static const char* METHODS[] =
 {
     "dihotomic_search",

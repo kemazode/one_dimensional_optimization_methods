@@ -1,12 +1,10 @@
-#!/usr/bin/env python
-
 from terminaltables import DoubleTable as Table
 from pyparsing import ParseException, Word, alphas, alphanums
+from fourFn import BNF, exprStack, fn, opn
 import math
 
 variables = {}
 
-from fourFn import BNF, exprStack, fn, opn
 def evaluateStack(s):
     op = s.pop()
     if op == 'unary -':
@@ -34,8 +32,11 @@ assignment = ident("varname") + '=' + arithExpr
 pattern = assignment | arithExpr
 
 GOLDEN_RATIO = 0.618033988749895
-HEADERS = ['K', 'a[k]', 'b[k]', 'λ[k]', 'μ[k]', 'F(λ[k])', 'F(μ[k])']
-FIBONACHI = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711]
+HEADERS = ['K', 'a[k]', 'b[k]', 'λ[k]', 'μ[k]', \
+           'F(λ[k])', 'F(μ[k])']
+FIBONACHI = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, \
+             144, 233, 377, 610, 987, 1597, 2584,  \
+             4181, 6765, 10946, 17711]
 
 def __evaluate_function(arg, set=False):
     if (set):
@@ -51,7 +52,8 @@ def __get_compare(mode):
     elif mode == 'min':
         return lambda x, y: x > y
     else:
-        raise RuntimeError('Mode is not specified. Use \'max\' or \'min\'.') 
+        raise RuntimeError('Mode is not specified.' \
+                           'Use \'max\' or \'min\'.') 
          
 
 def dihotomic_search(function, A, B, mode, eps, length):    
@@ -65,7 +67,8 @@ def dihotomic_search(function, A, B, mode, eps, length):
         nA = (A + B)/2 - eps
         nB = (A + B)/2 + eps
         fnA, fnB = f(nA), f(nB)        
-        table.append(['%.8g' % i for i in [step, A, B, nA, nB, fnA, fnB]])
+        table.append( \
+        ['%.8g' % i for i in [step, A, B, nA, nB, fnA, fnB]])
         if compare(fnA, fnB):
             A = nA
         else:
@@ -74,7 +77,10 @@ def dihotomic_search(function, A, B, mode, eps, length):
     
     # Result  
     optimal = (A+B)/2
-    result = 'Оптимальное значение аргумента: {0:.8g}\nОптимальное значение функции: {1:.8g}\nКол-во вычислений: {2}'.format(optimal, f(optimal), step)
+    result = 'Оптимальное значение аргумента: {0:.8g}\n' \
+             'Оптимальное значение функции: {1:.8g}\n'  \
+             'Кол-во вычислений: {2}' \
+             .format(optimal, f(optimal), step)
     
     return (table, result)
 
@@ -89,7 +95,8 @@ def golden_ratio_search(function, A, B, mode, eps, length):
     nA = A + (1-GOLDEN_RATIO)*(B-A)
     nB = A + GOLDEN_RATIO*(B-A)
     fnA, fnB = f(nA), f(nB)
-    table.append(['%.8g' % i for i in [step, A, B, nA, nB, fnA, fnB]])
+    table.append( \
+    ['%.8g' % i for i in [step, A, B, nA, nB, fnA, fnB]])
     step += 1
     
     # Remaining steps
@@ -102,12 +109,16 @@ def golden_ratio_search(function, A, B, mode, eps, length):
             nA =  A + (1-GOLDEN_RATIO)*(B-A)
             
         fnA, fnB = f(nA), f(nB)  
-        table.append(['%.8g' % i for i in [step, A, B, nA, nB, fnA, fnB]])
+        table.append( \
+        ['%.8g' % i for i in [step, A, B, nA, nB, fnA, fnB]])
         step += 1
     
     # Result
     optimal = (nA+nB)/2
-    result = 'Оптимальное значение аргумента: {0:.8g}\nОптимальное значение функции: {1:.8g}\nКол-во вычислений: {2}'.format(optimal, f(optimal), step)
+    result = 'Оптимальное значение аргумента: {0:.8g}\n' \
+             'Оптимальное значение функции: {1:.8g}\n' \
+             'Кол-во вычислений: {2}' \
+             .format(optimal, f(optimal), step)
     
     return (table, result)
 
@@ -125,19 +136,23 @@ def fibonachi_search(function, A, B, mode, eps, length):
     nA = A + FIBONACHI[n-2]*(B-A)/FIBONACHI[n]
     nB = A + FIBONACHI[n-1]*(B-A)/FIBONACHI[n]    
     fnA, fnB = f(nA), f(nB)        
-    table.append(['%.8g' % i for i in [step, A, B, nA, nB, fnA, fnB]])
+    table.append(['%.8g' % i for i in \
+                 [step, A, B, nA, nB, fnA, fnB]])
     
     # Remaining steps
     while step < n-1:                
         step += 1
         if compare(fnA, fnB):
             A, nA = nA, nB
-            nB = A + FIBONACHI[n-step]*(B-A)/FIBONACHI[n-step+1]
+            nB = A + FIBONACHI[n-step]*(B-A) \
+                     /FIBONACHI[n-step+1]
         else:
             B, nB = nB, nA
-            nA = A + FIBONACHI[n-step-1]*(B-A)/FIBONACHI[n-step+1]
+            nA = A + FIBONACHI[n-step-1]*(B-A) \
+                     /FIBONACHI[n-step+1]
         fnA, fnB = f(nA), f(nB)        
-        table.append(['%.8g' % i for i in [step, A, B, nA, nB, fnA, fnB]])    
+        table.append(['%.8g' % i for i in \
+                     [step, A, B, nA, nB, fnA, fnB]])    
                 
     # Last step
     step += 1
@@ -147,15 +162,18 @@ def fibonachi_search(function, A, B, mode, eps, length):
         A = nA
     else:
         B = nB
-    table.append(['%.8g' % i for i in [step, A, B, nA, nB, fnA, fnB]]) 
+    table.append( \
+    ['%.8g' % i for i in [step, A, B, nA, nB, fnA, fnB]]) 
     
     # Result
     optimal = (A+B)/2
-    result = 'Оптимальное значение аргумента: {0:.8g}\nОптимальное значение функции: {1:.8g}\nКол-во вычислений: {2}'.format(optimal, f(optimal), step)
+    result = 'Оптимальное значение аргумента: {0:.8g}\n' \
+             'Оптимальное значение функции: {1:.8g}\n' \
+             'Кол-во вычислений: {2}' \
+             .format(optimal, f(optimal), step)
     
     return (table, result)
 
 def get_printable_table(table):
     return Table(table[0]).table + '\n' + table[1]
     
-
