@@ -4,7 +4,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-constexpr const char* MODULE_NAME = "topu";
+constexpr const char* MODULE_NAME = "opt-methods";
 static const char* METHODS[] =
 {
     "dihotomic_search",
@@ -83,13 +83,13 @@ void MainWindow::on_evaluate_clicked()
     {
         py_method = PyObject_GetAttrString(py_module, METHODS[method]);
         if (!py_method or !PyCallable_Check(py_method)) {
-            print_error(QString("Error: Python object \"") + METHODS[method] + "\" is not exists or is not callable");
+            print_error("Error: Python object \"" + QString(METHODS[method]) + "\" does not exist or is not callable");
             goto error;
         }
 
         py_get_table = PyObject_GetAttrString(py_module, GET_TABLE_NAME);
         if (!py_get_table or !PyCallable_Check(py_get_table)) {
-            print_error("Error: Python object \"" + QString(GET_TABLE_NAME) + "\" is not exists or is not callable");
+            print_error("Error: Python object \"" + QString(GET_TABLE_NAME) + "\" does not exist or is not callable");
             goto error;
         }
 
@@ -113,7 +113,7 @@ void MainWindow::on_evaluate_clicked()
         ui->output->append(PyUnicode_AsUTF8(py_table));
 
     } else {
-        print_error("Error: Python module is not exists");
+        print_error("Error: Python module \"" + QString(MODULE_NAME) + "\" does not exist");
         goto error;
     }
 

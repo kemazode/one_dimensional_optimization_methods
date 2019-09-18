@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from terminaltables import AsciiTable as Table
+from terminaltables import DoubleTable as Table
 from pyparsing import ParseException, Word, alphas, alphanums
 import math
 
@@ -90,6 +90,7 @@ def golden_ratio_search(function, A, B, mode, eps, length):
     nB = A + GOLDEN_RATIO*(B-A)
     fnA, fnB = f(nA), f(nB)
     table.append(['%.8g' % i for i in [step, A, B, nA, nB, fnA, fnB]])
+    step += 1
     
     # Remaining steps
     while B-A > length:                    
