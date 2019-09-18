@@ -19,12 +19,10 @@ public:
 
 private slots:
     void on_evaluate_clicked();
-
     void on_clear_clicked();
 
 private:
     Ui::MainWindow *ui;    
-    void print_error(const QString &q);
-    void py_print_table(PyObject *, PyObject *);
+    void print_error(const QString &);
 };
 #endif // MAINWINDOW_H

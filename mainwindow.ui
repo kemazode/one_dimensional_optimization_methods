@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>808</width>
-    <height>453</height>
+    <width>681</width>
+    <height>595</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>One-dimensional optimization methods</string>
@@ -17,56 +23,29 @@
    <layout class="QGridLayout" name="gridLayout_2">
     <item row="0" column="0">
      <layout class="QGridLayout" name="gridLayout">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetDefaultConstraint</enum>
+      </property>
+      <property name="leftMargin">
+       <number>6</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
       <property name="spacing">
        <number>6</number>
       </property>
-      <item row="7" column="3">
-       <widget class="QLineEdit" name="var_e"/>
+      <item row="4" column="5">
+       <widget class="QLineEdit" name="b"/>
       </item>
-      <item row="4" column="1">
-       <widget class="QLabel" name="label_2">
-        <property name="font">
-         <font>
-          <family>Ubuntu Mono</family>
-          <pointsize>14</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>   A =</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="3">
-       <widget class="QLineEdit" name="var_a"/>
-      </item>
-      <item row="7" column="5">
-       <widget class="QLineEdit" name="var_l"/>
-      </item>
-      <item row="7" column="4">
-       <widget class="QLabel" name="label_5">
-        <property name="font">
-         <font>
-          <family>Ubuntu Mono</family>
-          <pointsize>14</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string> L = </string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="4">
-       <widget class="QLabel" name="label_3">
-        <property name="font">
-         <font>
-          <family>Ubuntu Mono</family>
-          <pointsize>14</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string> B = </string>
-        </property>
-       </widget>
+      <item row="0" column="3" colspan="3">
+       <widget class="QLineEdit" name="f"/>
       </item>
       <item row="7" column="1">
        <widget class="QLabel" name="label_4">
@@ -81,34 +60,21 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="3" colspan="3">
-       <widget class="QLineEdit" name="var_fx"/>
+      <item row="7" column="3">
+       <widget class="QLineEdit" name="eps"/>
       </item>
-      <item row="12" column="1" colspan="5">
-       <widget class="QTextEdit" name="main_output">
-        <property name="font">
-         <font>
-          <family>Ubuntu Mono</family>
-          <pointsize>12</pointsize>
-         </font>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QLabel" name="label">
-        <property name="font">
-         <font>
-          <family>Ubuntu Mono</family>
-          <pointsize>14</pointsize>
-         </font>
-        </property>
+      <item row="10" column="5">
+       <widget class="QRadioButton" name="check_golden_ratio">
         <property name="text">
-         <string>f(x) =</string>
+         <string>Golden Ratio Search</string>
         </property>
+        <attribute name="buttonGroup">
+         <string notr="true">methods</string>
+        </attribute>
        </widget>
       </item>
-      <item row="4" column="5">
-       <widget class="QLineEdit" name="var_b"/>
+      <item row="4" column="3">
+       <widget class="QLineEdit" name="a"/>
       </item>
       <item row="13" column="1" colspan="4">
        <layout class="QHBoxLayout" name="horizontalLayout">
@@ -128,23 +94,39 @@
         </item>
        </layout>
       </item>
-      <item row="8" column="5">
-       <widget class="QRadioButton" name="check_dihotomic">
-        <property name="text">
-         <string>Dihotomic Search</string>
+      <item row="4" column="1">
+       <widget class="QLabel" name="label_2">
+        <property name="font">
+         <font>
+          <family>Ubuntu Mono</family>
+          <pointsize>14</pointsize>
+         </font>
         </property>
-        <attribute name="buttonGroup">
-         <string notr="true">radiomethods</string>
-        </attribute>
+        <property name="text">
+         <string>   A =</string>
+        </property>
        </widget>
       </item>
-      <item row="10" column="5">
-       <widget class="QRadioButton" name="check_golden_ratio">
+      <item row="4" column="4">
+       <widget class="QLabel" name="label_3">
+        <property name="font">
+         <font>
+          <family>Ubuntu Mono</family>
+          <pointsize>14</pointsize>
+         </font>
+        </property>
         <property name="text">
-         <string>Golden Ratio Search</string>
+         <string> B = </string>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="3">
+       <widget class="QRadioButton" name="check_min">
+        <property name="text">
+         <string>Min</string>
         </property>
         <attribute name="buttonGroup">
-         <string notr="true">radiomethods</string>
+         <string notr="true">modes</string>
         </attribute>
        </widget>
       </item>
@@ -154,8 +136,34 @@
          <string>Fibonachi Search</string>
         </property>
         <attribute name="buttonGroup">
-         <string notr="true">radiomethods</string>
+         <string notr="true">methods</string>
         </attribute>
+       </widget>
+      </item>
+      <item row="7" column="4">
+       <widget class="QLabel" name="label_5">
+        <property name="font">
+         <font>
+          <family>Ubuntu Mono</family>
+          <pointsize>14</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string> L = </string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLabel" name="label">
+        <property name="font">
+         <font>
+          <family>Ubuntu Mono</family>
+          <pointsize>14</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>f(x) =</string>
+        </property>
        </widget>
       </item>
       <item row="8" column="3">
@@ -163,56 +171,74 @@
         <property name="text">
          <string>Max</string>
         </property>
+        <property name="iconSize">
+         <size>
+          <width>16</width>
+          <height>16</height>
+         </size>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
         <attribute name="buttonGroup">
-         <string notr="true">radiominmax</string>
+         <string notr="true">modes</string>
         </attribute>
        </widget>
       </item>
-      <item row="10" column="3">
-       <widget class="QRadioButton" name="check_min">
+      <item row="8" column="5">
+       <widget class="QRadioButton" name="check_dihotomic">
         <property name="text">
-         <string>Min</string>
+         <string>Dihotomic Search</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
         </property>
         <attribute name="buttonGroup">
-         <string notr="true">radiominmax</string>
+         <string notr="true">methods</string>
         </attribute>
+       </widget>
+      </item>
+      <item row="7" column="5">
+       <widget class="QLineEdit" name="len"/>
+      </item>
+      <item row="12" column="1" colspan="5">
+       <widget class="QTextBrowser" name="output">
+        <property name="font">
+         <font>
+          <family>Ubuntu Mono</family>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
        </widget>
       </item>
      </layout>
     </item>
    </layout>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>808</width>
-     <height>30</height>
-    </rect>
-   </property>
-  </widget>
  </widget>
  <tabstops>
-  <tabstop>var_fx</tabstop>
-  <tabstop>var_a</tabstop>
-  <tabstop>var_e</tabstop>
-  <tabstop>var_b</tabstop>
-  <tabstop>var_l</tabstop>
+  <tabstop>f</tabstop>
+  <tabstop>a</tabstop>
+  <tabstop>b</tabstop>
+  <tabstop>eps</tabstop>
+  <tabstop>len</tabstop>
   <tabstop>check_max</tabstop>
   <tabstop>check_min</tabstop>
   <tabstop>check_dihotomic</tabstop>
   <tabstop>check_golden_ratio</tabstop>
   <tabstop>check_fibo</tabstop>
-  <tabstop>main_output</tabstop>
+  <tabstop>output</tabstop>
   <tabstop>evaluate</tabstop>
   <tabstop>clear</tabstop>
  </tabstops>
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="radiominmax"/>
-  <buttongroup name="radiomethods"/>
+  <buttongroup name="methods">
+   <property name="exclusive">
+    <bool>true</bool>
+   </property>
+  </buttongroup>
+  <buttongroup name="modes"/>
  </buttongroups>
 </ui>
