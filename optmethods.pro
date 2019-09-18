@@ -1,4 +1,4 @@
-TARGET = opt-methods
+TARGET = optmethods
 
 QT       += core gui
 
