@@ -1,6 +1,6 @@
 #include <python3.7m/Python.h>
+#include <QDoubleValidator>
 #include <cstdlib>
-#include <QValidator>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
